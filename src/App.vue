@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app dark>
     <v-navigation-drawer
       temporary
       :mini-variant="miniVariant"
@@ -13,7 +13,7 @@
         <v-list-tile
           value="true"
           v-for="(item, i) in items"
-          :key="i"
+          :key="i" @click=""
         >
           <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
@@ -25,6 +25,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar
+      color="orange lighten-1"
       app
       :clipped-left="clipped"
     >
@@ -35,14 +36,6 @@
     <v-content>
       <router-view/>
     </v-content>
-    <v-navigation-drawer
-      temporary
-      :right="right"
-      v-model="rightDrawer"
-      fixed
-      app
-    >
-    </v-navigation-drawer>
     <v-footer :fixed="fixed" app>
       <span>&copy; 2018 fifteen-5 </span>
     </v-footer>
