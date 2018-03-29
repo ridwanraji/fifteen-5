@@ -1,6 +1,6 @@
 # fifteen-5
 
-> A photo storage project for Rilly Visuals using firebaseand vue
+> A photo storage project for Rilly Visuals using firebas and vue
 
 ## Build Setup
 
