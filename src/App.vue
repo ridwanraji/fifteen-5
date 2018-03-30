@@ -1,40 +1,19 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
-      temporary
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      v-model="drawer"
-      enable-resize-watcher
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile
-          value="true"
-          v-for="(item, i) in items"
-          :key="i" @click=""
-        >
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar
-      color="orange lighten-1"
-      app
-      :clipped-left="clipped"
-    >
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-toolbar>
+    <nav-tab
+    :is-visible = false
+    :tabs="tabs"/>
+    <main-header
+    :title="title"/>
+    @updateVisFromHeader = "changeVis"
     <v-content>
-      <router-view/>
+      <v-layout>
+          <transition>
+            <keep-alive>
+              <router-view/>
+            </keep-alive>
+          </transition>
+        </v-layout>
     </v-content>
     <v-footer :fixed="fixed" app>
       <span>&copy; 2018 fifteen-5 </span>
@@ -43,32 +22,27 @@
 </template>
 
 <script>
+import NavTab from '@/components/NavTab'
+import MainHeader from '@/components/MainHeader'
+
 export default {
+  components: {NavTab, MainHeader},
   data () {
     return {
-      temporary: true,
-      clipped: true,
-      drawer: true,
-      fixed: false,
-      items: [{
-        icon: 'home',
-        title: 'Home'
-      }, {
-        icon: 'date_range',
-        title: 'Book A Session'
-      }, {
-        icon: 'photo_library',
-        title: 'Gallery'
-      }, {
-        icon: 'account_box',
-        title: 'About'
-      }],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Rilly Visuals'
     }
   },
-  name: 'App'
+  computed: {
+    title () {
+      return this.$route.name
+    },
+    tabs () {
+      return this.$router.options.routes.filter(route => route.name && route.icon)
+    }
+  },
+  methods: {
+    changeVis () {
+      this.vis = !this.vis
+    }
+  }
 }
 </script>
