@@ -2,7 +2,10 @@
   <v-app dark>
     <nav-tab
     temporary
+    :mini-variant="miniVariant"
+    v-model="drawer"
     :clipped="clipped"
+    fixed
     :tabs="tabs"/>
     <main-header
     :title="title"/>
@@ -30,6 +33,10 @@ export default {
   components: {NavTab, MainHeader},
   data () {
     return {
+      temporary: true,
+      clipped: true,
+      drawer: true,
+      fixed: false
     }
   },
   computed: {
