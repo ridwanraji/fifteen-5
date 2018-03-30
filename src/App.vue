@@ -1,7 +1,8 @@
 <template>
   <v-app dark>
     <nav-tab
-    :is-visible = false
+    temporary
+    :clipped="clipped"
     :tabs="tabs"/>
     <main-header
     :title="title"/>
