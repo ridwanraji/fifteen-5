@@ -2,6 +2,7 @@
   <v-toolbar
       color='orange lighten-1'
       app
+      v-model="isVisible"
       :clipped-left="clipped"
     >
       <v-toolbar-side-icon
@@ -17,7 +18,13 @@ export default {
   data () {
     return {
       title: 'Rilly Visuals',
-      lipped: true
+      clipped: true
+    }
+  },
+  props: {
+    isVisible: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
