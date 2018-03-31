@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app dark>
     <v-navigation-drawer
       temporary
       :mini-variant="miniVariant"
@@ -9,22 +9,26 @@
       fixed
       app
     >
-      <v-list>
+      <v-list
+      two-line
+      dense
+      class="pt-0">
         <v-list-tile
-          value="true"
-          v-for="(item, i) in items"
-          :key="i"
+          v-for="tab in tabs"
+          :key="tab.title"
+          :to="{name:tab.name}"
         >
           <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
+            <v-icon> {{tab.icon}} </v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
+            <v-list-tile-title> {{tab.name}} </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar
+    color='orange lighten-1'
       app
       :clipped-left="clipped"
     >
@@ -57,23 +61,26 @@ export default {
       clipped: true,
       drawer: true,
       fixed: false,
-      items: [{
-        icon: 'home',
-        title: 'Home'
-      }, {
-        icon: 'date_range',
-        title: 'Book A Session'
-      }, {
-        icon: 'photo_library',
-        title: 'Gallery'
-      }, {
-        icon: 'account_box',
-        title: 'About'
-      }],
       miniVariant: false,
       right: true,
       rightDrawer: false,
       title: 'Rilly Visuals'
+    }
+  },
+  props: {
+    tabs: {
+      type: Array,
+      default () {
+        return []
+      }
+    }
+  },
+  computed: {
+    title () {
+      return this.$route.name
+    },
+    tabs () {
+      return this.$router.options.routes.filter(route => route.name && route.icon)
     }
   },
   name: 'App'
