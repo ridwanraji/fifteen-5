@@ -14,7 +14,7 @@
       dense
       class="pt-0">
         <v-list-tile
-          v-for="tab in tabs"
+          v-for="tab in navtabs"
           :key="tab.title"
           :to="{name:tab.name}"
         >
@@ -33,7 +33,7 @@
       :clipped-left="clipped"
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+      <v-toolbar-title v-text="tab_title"></v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-content>
@@ -64,7 +64,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Rilly Visuals'
+      tab_title: 'Rilly Visuals'
     }
   },
   props: {
@@ -79,7 +79,7 @@ export default {
     title () {
       return this.$route.name
     },
-    tabs () {
+    navtabs () {
       return this.$router.options.routes.filter(route => route.name && route.icon)
     }
   },
