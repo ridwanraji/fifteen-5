@@ -1,73 +1,59 @@
 <template>
-  <v-container fluid>
-    <v-slide-y-transition mode="out-in">
-      <section>
-        <v-layout column align-center>
-        <img src="@/assets/RV20.png" alt="Vuetify.js"
-        height="200">
-        <h1 class="white--text mb-2 display-1 text-xs-center">Rilly Visuals</h1>
-        <div class="subheading mb-3 text-xs-center">Photographer | Videographer | Graphic Designer</div>
-        <v-btn
-              class="blue lighten-2 mt-5"
-              dark
-              large
-              href="https://www.instagram.com/rillyvisuals"
-            >
-              Book Now
-            </v-btn>
-        <v-flex xs12 sm4 class="my-3">
-            <div class="text-xs-center">
-              <h2 class="headline">Helping you save your memories since 2016...</h2>
-              <span class="subheading">
-                We the best
-              </span>
-            </div>
-          </v-flex>
-
-        <v-flex xs12>
-            <v-container grid-list-xl>
-              <v-layout row wrap align-center>
-                <v-flex xs12 md4>
-                  <v-btn flat>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <v-icon x-large class="blue--text text--lighten-2">color_lens</v-icon>
-                    </v-card-text>
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">Photography</div>
-                    </v-card-title>
-                  </v-card>
-                  </v-btn>
-                </v-flex>
-
-                <v-flex xs12 md4>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon>
-                    </v-card-text>
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="headline">Videography</div>
-                    </v-card-title>
-                  </v-card>
-                </v-flex>
-                <v-flex xs12 md4>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <v-icon x-large class="blue--text text--lighten-2">build</v-icon>
-                    </v-card-text>
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">Graphic Design</div>
-                    </v-card-title>
-                  </v-card>
+<v-container  fluid fill-height>
+          <v-carousel
+      style = "height: 100%"
+      :hide-delimiters = true
+      :hide-controls = true
+      >
+        <v-carousel-item
+        v-for="(slide, i) in cards"
+        :src="slide.src"
+        :key="i"
+        transition = "fade" >
+          <v-jumbotron dark
+          :gradient="gradient">
+            <v-container fill-height>
+              <v-layout align-center>
+                <v-flex align-center>
+                  <img src="@/assets/RV20.png" height="200" >
+                  <h3 class="white--text mb-2 display-2 text-xl-center">{{ slide.title }}</h3>
+                  <div class="subheading mb-3 display-1 text-xl-center">{{ slide.text }}</div>
                 </v-flex>
               </v-layout>
             </v-container>
-          </v-flex>
-      </v-layout>
-      </section>
-    </v-slide-y-transition>
+          </v-jumbotron>
+        </v-carousel-item>
+      </v-carousel>
   </v-container>
+
 </template>
+
+<script>
+export default {
+  props: {
+    cards: {
+      type: Array,
+      default: function () {
+        return [
+          {title: 'Rilly Visuals', src: 'https://wallpaperbrowse.com/media/images/5ZydGd0.jpg', text: 'Photographer | Videographer | Graphic Designer'},
+          {title: 'Rilly Visuals', src: 'https://wallpaperbrowse.com/media/images/LCQxACR.jpg', text: 'Photographer | Videographer | Graphic Designer'},
+          {title: 'Rilly Visuals', src: 'https://wallpaperbrowse.com/media/images/wp-image-59632011-random-picture.jpg', text: 'Photographer | Videographer | Graphic Designer'}
+        ]
+      }
+    }
+  },
+  data: () => ({
+    gradient: 'to top right, rgba(63,81,181, .7), rgba(25,32,72, .7)'
+  })
+}
+</script>
+
+<style>
+#header-carousel {
+  height:100vh;
+}
+</style>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
@@ -84,5 +70,13 @@ li {
 }
 a {
   color: #42b983;
+}
+img {
+    display: block;
+    margin: 0 auto;
+}
+v-btn {
+  display: block;
+    margin: 0 auto;
 }
 </style>
