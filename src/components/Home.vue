@@ -1,5 +1,4 @@
 <template>
-<v-container  fluid fill-height>
           <v-carousel
       style = "height: 100%"
       :hide-delimiters = true
@@ -16,15 +15,14 @@
               <v-layout align-center>
                 <v-flex align-center>
                   <img src="@/assets/RV20.png" height="200" >
-                  <h3 class="white--text mb-2 display-2 text-xl-center">{{ slide.title }}</h3>
-                  <div class="subheading mb-3 display-1 text-xl-center">{{ slide.text }}</div>
+                  <h1>{{ slide.title }}</h1>
+                  <h2>{{ slide.text }}</h2>
                 </v-flex>
               </v-layout>
             </v-container>
           </v-jumbotron>
         </v-carousel-item>
       </v-carousel>
-  </v-container>
 
 </template>
 
@@ -57,8 +55,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1 {
   font-weight: normal;
+  text-align: center;
+  font-size: 3em;
+}
+h2 {
+  font-weight: normal;
+  text-align: center;
+  font-size: 1em;
 }
 ul {
   list-style-type: none;
