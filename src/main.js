@@ -16,8 +16,9 @@ Vue.use(Vuetify, { theme: {
   warning: '#FFC107'
 }})
 
-Vue.config.productionTip = false
-
+Vue.config.silent = false
+Vue.config.performance = true
+Vue.config.productionTip = true
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
