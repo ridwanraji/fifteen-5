@@ -13,7 +13,7 @@
     <v-form @submit.prevent="submit" ref="form">
       <v-container grid-list-xl fluid>
         <h1 class="title">Book a session with us</h1>
-        <v-layout wrap>
+        <v-layout row wrap>
           <v-flex xs12 sm6>
             <v-text-field
               label="First name"
@@ -68,6 +68,64 @@
               :rules="rules.shootType"
             ></v-select>
           </v-flex>
+          <v-flex
+        xs11
+        sm5>
+        <v-menu
+          ref="dMenu"
+          lazy
+          :close-on-content-click="false"
+          v-model="dateMenu"
+          transition="scale-transition"
+          offset-y
+          full-width
+          :nudge-right="40"
+          min-width="290px"
+          :return-value.sync="date">
+          <v-text-field
+            slot="activator"
+            label="Date of Shoot"
+            v-model="date"
+            prepend-icon="event"
+            readonly/>
+          <v-date-picker
+            v-model="date"
+            scrollable>
+            <v-spacer></v-spacer>
+            <v-btn flat color="primary" @click="dateMenu = false">Cancel</v-btn>
+          <v-btn flat color="primary" @click="$refs.dMenu.save(date)">OK</v-btn>
+          </v-date-picker>
+        </v-menu>
+      </v-flex>
+      <v-spacer></v-spacer>
+      <v-flex
+        xs11
+        sm5>
+        <v-menu
+          ref="tMenu"
+          lazy
+          :close-on-content-click="false"
+          v-model="timeMenu"
+          transition="scale-transition"
+          offset-y
+          full-width
+          :nudge-right="40"
+          max-width="290px"
+          min-width="290px"
+          :return-value.sync="time">
+          <v-text-field
+            slot="activator"
+            label="Time of Shoot"
+            v-model="formattedTime"
+            prepend-icon="access_time"
+            readonly/>
+          <v-time-picker
+            v-model="time">
+            <v-spacer></v-spacer>
+          <v-btn flat color="primary" @click="timeMenu = false">Cancel</v-btn>
+          <v-btn flat color="primary" @click="$refs.tMenu.save(time)">OK</v-btn></v-time-picker>
+        </v-menu>
+      </v-flex>
           <v-flex xs12 sm6>
             <v-text-field
               label="E-mail"
@@ -196,11 +254,13 @@
         province: '',
         shootType: '',
         contact: '',
+        age: null,
         instagram: '',
         facebook: '',
         twitter: '',
-        age: null,
-        terms: false
+        date: null,
+        time: null,
+        email: ''
       })
 
       return {
@@ -224,7 +284,15 @@
         content: `Hello`,
         snackbar: false,
         terms: false,
-        defaultForm
+        defaultForm,
+        instagram: '',
+        facebook: '',
+        twitter: '',
+        date: null,
+        time: null,
+        dateMenu: false,
+        timeMenu: false,
+        email: ''
       }
     },
 
@@ -236,6 +304,14 @@
           this.form.city &&
           this.form.terms
         )
+      },
+      formattedTime () {
+        if (this.time) {
+          const timeFrags = this.time.split(':')
+          const timeFormatted = (timeFrags[0] > 12 ? timeFrags[0] - 12 : timeFrags[0]) + ':' + timeFrags[1] + (timeFrags[0] > 12 ? ' PM' : ' AM')
+          return timeFormatted
+        }
+        return this.time
       }
     },
 
