@@ -1,8 +1,9 @@
 <template>
+<v-layout id="header-carousel">
           <v-carousel
       style = "height: 100%"
       :hide-delimiters = true
-      :hide-controls = true
+      :hide-controls = false
       >
         <v-carousel-item
         v-for="(slide, i) in cards"
@@ -23,26 +24,19 @@
           </v-jumbotron>
         </v-carousel-item>
       </v-carousel>
-
+</v-layout>
 </template>
 
 <script>
 export default {
-  props: {
-    cards: {
-      type: Array,
-      default: function () {
-        return [
-          {title: 'Rilly Visuals', src: 'https://wallpaperbrowse.com/media/images/5ZydGd0.jpg', text: 'Photographer | Videographer | Graphic Designer'},
-          {title: 'Rilly Visuals', src: 'https://wallpaperbrowse.com/media/images/LCQxACR.jpg', text: 'Photographer | Videographer | Graphic Designer'},
-          {title: 'Rilly Visuals', src: 'https://wallpaperbrowse.com/media/images/wp-image-59632011-random-picture.jpg', text: 'Photographer | Videographer | Graphic Designer'}
-        ]
-      }
-    }
-  },
   data: () => ({
     gradient: 'to top right, rgba(63,81,181, .7), rgba(25,32,72, .7)'
-  })
+  }),
+  computed: {
+    cards () {
+      return this.$store.getters.loadHomeCarouselData
+    }
+  }
 }
 </script>
 
