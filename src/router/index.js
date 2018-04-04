@@ -4,7 +4,6 @@ import Home from '@/components/Home'
 import Bookings from '@/components/Bookings'
 import Gallery from '@/components/Gallery'
 import About from '@/components/About'
-import Contact from '@/components/Contact'
 
 Vue.use(Router)
 
@@ -29,16 +28,10 @@ const router = new Router({
       component: Gallery
     },
     {
-      path: '/About-Us',
-      name: 'About Us',
+      path: '/About',
+      name: 'About',
       icon: 'account_box',
       component: About
-    },
-    {
-      path: '/Contact-Us',
-      name: 'Contact Us',
-      icon: 'phone',
-      component: Contact
     }
   ]
 })

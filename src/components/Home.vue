@@ -1,69 +1,26 @@
 <template>
-          <v-carousel
-      style = "height: 100%"
-      :hide-delimiters = true
-      :hide-controls = true
-      >
-        <v-carousel-item
-        v-for="(slide, i) in cards"
-        :src="slide.src"
-        :key="i"
-        transition = "fade" >
-          <v-jumbotron dark
-          :gradient="gradient">
-            <v-container fill-height>
-              <v-layout align-center>
-                <v-flex align-center>
-                  <img src="@/assets/RV20.png" height="200" >
-                  <h1>{{ slide.title }}</h1>
-                  <h2>{{ slide.text }}</h2>
-                </v-flex>
-              </v-layout>
-            </v-container>
-          </v-jumbotron>
-        </v-carousel-item>
-      </v-carousel>
-
+  <v-container fluid>
+    <v-slide-y-transition mode="out-in">
+      <v-layout column align-center>
+        <img src="@/assets/RV20.png" alt="Vuetify.js"
+        height="200">
+        <blockquote>
+          &#8220;First, solve the problem. Then, write the code.&#8221;
+          <footer>
+            <small>
+              <em>&mdash;John Johnson</em>
+            </small>
+          </footer>
+        </blockquote>
+      </v-layout>
+    </v-slide-y-transition>
+  </v-container>
 </template>
-
-<script>
-export default {
-  props: {
-    cards: {
-      type: Array,
-      default: function () {
-        return [
-          {title: 'Rilly Visuals', src: 'https://wallpaperbrowse.com/media/images/5ZydGd0.jpg', text: 'Photographer | Videographer | Graphic Designer'},
-          {title: 'Rilly Visuals', src: 'https://wallpaperbrowse.com/media/images/LCQxACR.jpg', text: 'Photographer | Videographer | Graphic Designer'},
-          {title: 'Rilly Visuals', src: 'https://wallpaperbrowse.com/media/images/wp-image-59632011-random-picture.jpg', text: 'Photographer | Videographer | Graphic Designer'}
-        ]
-      }
-    }
-  },
-  data: () => ({
-    gradient: 'to top right, rgba(63,81,181, .7), rgba(25,32,72, .7)'
-  })
-}
-</script>
-
-<style>
-#header-carousel {
-  height:100vh;
-}
-</style>
-
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1 {
+h1, h2 {
   font-weight: normal;
-  text-align: center;
-  font-size: 3em;
-}
-h2 {
-  font-weight: normal;
-  text-align: center;
-  font-size: 1em;
 }
 ul {
   list-style-type: none;
@@ -75,13 +32,5 @@ li {
 }
 a {
   color: #42b983;
-}
-img {
-    display: block;
-    margin: 0 auto;
-}
-v-btn {
-  display: block;
-    margin: 0 auto;
 }
 </style>
