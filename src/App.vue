@@ -37,16 +37,14 @@
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-content>
-      <router-view/>
+      <v-layout>
+          <transition>
+            <keep-alive>
+              <router-view/>
+            </keep-alive>
+          </transition>
+        </v-layout>
     </v-content>
-    <v-navigation-drawer
-      temporary
-      :right="right"
-      v-model="rightDrawer"
-      fixed
-      app
-    >
-    </v-navigation-drawer>
     <v-footer :fixed="fixed" app>
       <span>&copy; 2018 fifteen-5 </span>
     </v-footer>
@@ -54,7 +52,11 @@
 </template>
 
 <script>
+import NavTab from '@/components/NavTab'
+import MainHeader from '@/components/MainHeader'
+
 export default {
+  components: {NavTab, MainHeader},
   data () {
     return {
       temporary: true,
@@ -83,6 +85,10 @@ export default {
       return this.$router.options.routes.filter(route => route.name && route.icon)
     }
   },
-  name: 'App'
+  methods: {
+    changeVis () {
+      this.vis = !this.vis
+    }
+  }
 }
 </script>
