@@ -5,6 +5,7 @@ import Bookings from '@/components/Bookings'
 import Gallery from '@/components/Gallery'
 import About from '@/components/About'
 import Contact from '@/components/Contact'
+import Admin from '@/components/Admin'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ const router = new Router({
       name: 'Contact Us',
       icon: 'phone',
       component: Contact
+    },
+    {
+      path: '/Admin',
+      icon: 'person',
+      component: Admin
     }
   ],
   mode: 'history'
