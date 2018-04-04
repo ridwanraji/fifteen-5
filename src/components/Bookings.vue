@@ -18,14 +18,14 @@
             <v-text-field
               label="First name"
               required
-              v-model="form.first"
+              v-model="first"
               :rules="rules.name"
             ></v-text-field>
           </v-flex>
           <v-flex xs12 sm6>
             <v-text-field
               label="Last name"
-              v-model="form.last"
+              v-model="last"
               required
               :rules="rules.name"
             ></v-text-field>
@@ -38,14 +38,14 @@
               min="1"
               max="100"
               thumb-label
-              v-model="form.age"
+              v-model="age"
               :rules="rules.age"
             ></v-slider>
           </v-flex>
           <v-flex xs12 sm6>
             <v-text-field
               label="City"
-              v-model="form.city"
+              v-model="city"
               required
               :rules="rules.city"
             ></v-text-field>
@@ -53,18 +53,18 @@
           <v-flex xs12 sm6>
             <v-select
               label="Province"
-              v-model="form.province"
+              v-model="province"
               required
-              :items="province"
+              :items="provinces"
               :rules="rules.province"
             ></v-select>
           </v-flex>
           <v-flex xs12 sm6>
             <v-select
               label="Shoot Type"
-              v-model="form.shootType"
+              v-model="shootType"
               required
-              :items="shootType"
+              :items="shootTypes"
               :rules="rules.shootType"
             ></v-select>
           </v-flex>
@@ -139,6 +139,7 @@
               label="Phone"
               single-line
               prepend-icon="phone"
+              v-model="phone"
             ></v-text-field>
           </v-flex>
           <v-flex xs6 sm6>
@@ -166,16 +167,16 @@
           <v-flex xs12 sm6>
             <v-select
               label="How can we contact you?"
-              v-model="form.contact"
+              v-model="contact"
               required
-              :items="contact"
+              :items="contacts"
               :rules="rules.contact"
             ></v-select>
           </v-flex>
           <v-flex xs12>
             <v-text-field
               multi-line
-              v-model="form.bio"
+              v-model="bio"
             >
               <div slot="label">
                 Tell us a bit about yourself and the shoot <small>(optional)</small>
@@ -249,18 +250,19 @@
       const defaultForm = Object.freeze({
         first: '',
         last: '',
-        bio: '',
+        age: null,
         city: '',
         province: '',
         shootType: '',
-        contact: '',
-        age: null,
+        date: null,
+        time: null,
+        email: '',
+        phone: '',
         instagram: '',
         facebook: '',
         twitter: '',
-        date: null,
-        time: null,
-        email: ''
+        contact: '',
+        bio: ''
       })
 
       return {
@@ -269,7 +271,6 @@
           age: [
             val => val < 10 || `I don't believe you!`
           ],
-          animal: [val => (val || '').length > 0 || 'This field is required'],
           name: [val => (val || '').length > 0 || 'This field is required'],
           city: [val => (val || '').length > 0 || 'This field is required'],
           email: (value) => {
@@ -277,31 +278,42 @@
             return pattern.test(value) || 'Invalid e-mail.'
           }
         },
-        province: ['Saskatchewan', 'Alberta', 'British Coloumbia', 'Ontario', 'Quebec', 'Nova Scotia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador'],
-        shootType: ['Graduation', 'Fashion', 'Family', 'Personal', 'Boudoir'],
-        contact: ['Email', 'Phone', 'Instagram', 'Facebook', 'Twitter'],
+        provinces: ['Saskatchewan', 'Alberta', 'British Coloumbia', 'Ontario', 'Quebec', 'Nova Scotia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador'],
+        shootTypes: ['Graduation', 'Fashion', 'Family', 'Personal', 'Boudoir'],
+        contacts: ['Email', 'Phone', 'Instagram', 'Facebook', 'Twitter'],
+
         conditions: false,
         content: `Hello`,
         snackbar: false,
         terms: false,
+        dateMenu: false,
+        timeMenu: false,
         defaultForm,
+
+        first: '',
+        last: '',
+        age: null,
+        city: '',
+        province: '',
+        shootType: '',
+        date: null,
+        time: null,
+        email: '',
+        phone: '',
         instagram: '',
         facebook: '',
         twitter: '',
-        date: null,
-        time: null,
-        dateMenu: false,
-        timeMenu: false,
-        email: ''
+        contact: '',
+        bio: ''
       }
     },
 
     computed: {
       formIsValid () {
         return (
-          this.form.first &&
-          this.form.last &&
-          this.form.city &&
+          this.first &&
+          this.last &&
+          this.city &&
           this.form.terms
         )
       },
@@ -321,7 +333,25 @@
         this.$refs.form.reset()
       },
       submit () {
+        const bookingData = {
+          first: this.first,
+          last: this.last,
+          age: this.age,
+          city: this.city,
+          province: this.province,
+          shootType: this.shootType,
+          date: this.date,
+          time: this.time,
+          email: this.email,
+          phone: this.phone,
+          instagram: this.instagram,
+          facebook: this.facebook,
+          twitter: this.twitter,
+          contact: this.contact,
+          bio: this.bio
+        }
         this.snackbar = true
+        this.$store.dispatch('createBooking', bookingData)
         this.resetForm()
       }
     }
