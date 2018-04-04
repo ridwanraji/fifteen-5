@@ -33,8 +33,17 @@
       :clipped-left="clipped"
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="tab_title"></v-toolbar-title>
+      <v-toolbar-title>
+        <router-link to="/" tag="span" style="cursor: pointer">
+          Rilly Visuals
+          </router-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
+        <v-btn icon light
+        router
+        to="/Admin">
+          <v-icon large color="white">mdi-person</v-icon>
+       </v-btn>
     </v-toolbar>
     <v-content>
       <v-layout>
