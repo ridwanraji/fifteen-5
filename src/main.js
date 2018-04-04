@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
 import { store } from './store'
+import * as firebase from 'firebase'
 import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Vuetify, { theme: {
@@ -26,5 +27,15 @@ new Vue({
   router,
   store,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+
+  created () {
+    firebase.initializeApp({
+      apiKey: 'AIzaSyDCWlH2QByZ-HC12CNYksxcHY7IPpOhQVk',
+      authDomain: 'rilly-visuals.firebaseapp.com',
+      databaseURL: 'https://rilly-visuals.firebaseio.com',
+      projectId: 'rilly-visuals',
+      storageBucket: ''
+    })
+  }
 })
