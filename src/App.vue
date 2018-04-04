@@ -52,11 +52,8 @@
 </template>
 
 <script>
-import NavTab from '@/components/NavTab'
-import MainHeader from '@/components/MainHeader'
 
 export default {
-  components: {NavTab, MainHeader},
   data () {
     return {
       temporary: true,
