@@ -40,7 +40,8 @@ const router = new Router({
       icon: 'phone',
       component: Contact
     }
-  ]
+  ],
+  mode: 'history'
 })
 
 export default router
