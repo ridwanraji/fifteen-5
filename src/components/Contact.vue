@@ -1,8 +1,6 @@
 <template>
-  <v-container fluid>
-    <v-slide-y-transition mode="out-in">
-      <section>
-        <v-flex xs12 sm4 offset-sm1>
+  <v-container align-center fluid>
+        <v-layout justify-center xs12 sm4 offset-sm1>
               <v-card class="elevation-0 transparent">
                 <v-card-title primary-title class="layout justify-center">
                   <div class="headline">Contact us</div>
@@ -35,10 +33,24 @@
                       <v-list-tile-title>rillyvisuals@gmail.com</v-list-tile-title>
                     </v-list-tile-content>
                   </v-list-tile>
+                  <v-list-tile>
+                    <v-list-tile-action>
+                      <v-icon class="blue--text text--lighten-2">fas fa-twitter</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                      <v-list-tile-title>@rillyvisuals</v-list-tile-title>
+                    </v-list-tile-content>
+                  </v-list-tile>
+                  <v-list-tile>
+                    <v-list-tile-action>
+                      <v-icon class="blue--text text--lighten-2">fas fa-instagram</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                      <v-list-tile-title>@rillyvisuals</v-list-tile-title>
+                    </v-list-tile-content>
+                  </v-list-tile>
                 </v-list>
               </v-card>
-            </v-flex>
-      </section>
-    </v-slide-y-transition>
+            </v-layout>
   </v-container>
 </template>
