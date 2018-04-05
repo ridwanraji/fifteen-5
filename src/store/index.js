@@ -48,9 +48,9 @@ export const store = new Vuex.Store({
       {title: 'Rilly Visuals', src: 'https://wallpaperbrowse.com/media/images/wp-image-59632011-random-picture.jpg', text: 'Photographer | Videographer | Graphic Designer'}
     ],
     loadGalleryImages: [
-      {src: '@/assets/Bridge1.png'},
-      {src: '@/assets/KAT.jpg'},
-      {src: '@/assets/KAT1.jpg'},
+      {src: require('@/assets/Bridge1.png')},
+      {src: require('@/assets/KAT.jpg')},
+      {src: require('@/assets/KAT1.jpg')},
       {src: 'https://wallpaperbrowse.com/media/images/5ZydGd0.jpg'}
     ],
     user: null,
