@@ -6,6 +6,7 @@ import Gallery from '@/components/Gallery'
 import About from '@/components/About'
 import Contact from '@/components/Contact'
 import Admin from '@/components/Admin'
+import SignIn from '@/components/SignIn'
 
 Vue.use(Router)
 
@@ -45,6 +46,10 @@ const router = new Router({
       path: '/Admin',
       icon: 'person',
       component: Admin
+    },
+    {
+      path: '/SignIn',
+      component: SignIn
     }
   ],
   mode: 'history'
