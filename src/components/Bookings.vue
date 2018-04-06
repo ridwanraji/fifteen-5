@@ -6,7 +6,7 @@
       bottom
       color="success"
     >
-      <span>Registration successful!</span>
+      <span>Booking Successful!</span>
       <v-icon dark>check_circle</v-icon>
     </v-snackbar>
     <v-form @submit.prevent="submit" ref="form">
