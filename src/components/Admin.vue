@@ -3,7 +3,7 @@
     <v-layout row wrap v-for="booking in bookings"
                 :key="booking.first" class="mb-2" >
       <v-flex xs12>
-        <v-card class="info" >
+        <v-card >
           <v-container fluid>
             <v-layout row>
               <v-flex xs5>
