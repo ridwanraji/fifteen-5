@@ -3,8 +3,7 @@
     <v-snackbar
       v-model="snackbar"
       absolute
-      top
-      right
+      bottom
       color="success"
     >
       <span>Registration successful!</span>
