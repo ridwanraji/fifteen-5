@@ -37,5 +37,6 @@ new Vue({
       projectId: 'rilly-visuals',
       storageBucket: ''
     })
+    this.$store.dispatch('loadAllBooking')
   }
 })
