@@ -30,16 +30,13 @@
             ></v-text-field>
           </v-flex>
           <v-flex xs12 sm6>
-            <v-slider
-              color="orange"
-              label="Age"
-              hint="Be honest"
-              min="1"
-              max="100"
-              thumb-label
+            <v-select
+              label="Age (Be Honest)"
               v-model="age"
+              required
+              :items="ages"
               :rules="rules.age"
-            ></v-slider>
+            ></v-select>
           </v-flex>
           <v-flex xs12 sm6>
             <v-text-field
@@ -201,7 +198,6 @@
         <v-btn flat @click="resetForm">Cancel</v-btn>
         <v-spacer></v-spacer>
         <v-btn
-          flat
           color="primary"
           type="submit"
           :disabled="!formIsValid"
@@ -211,14 +207,14 @@
     <v-dialog v-model="terms" width="70%">
       <v-card>
         <v-card-title class="title">Terms</v-card-title>
-        <v-card-text v-for="n in 5" :key="n">
+        <v-card-text>
           {{ content }}
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
             flat
-            color="purple"
+            color="primary"
             @click="terms = false"
           >Ok</v-btn>
         </v-card-actions>
@@ -227,14 +223,14 @@
     <v-dialog v-model="conditions" width="70%">
       <v-card>
         <v-card-title class="title">Conditions</v-card-title>
-        <v-card-text v-for="n in 5" :key="n">
+        <v-card-text>
           {{ content }}
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
             flat
-            color="purple"
+            color="primary"
             @click="conditions = false"
           >Ok</v-btn>
         </v-card-actions>
@@ -249,7 +245,7 @@
       const defaultForm = Object.freeze({
         first: '',
         last: '',
-        age: null,
+        age: '',
         city: '',
         province: '',
         shootType: '',
@@ -267,9 +263,6 @@
       return {
         form: Object.assign({}, defaultForm),
         rules: {
-          age: [
-            val => val < 10 || `I don't believe you!`
-          ],
           name: [val => (val || '').length > 0 || 'This field is required'],
           city: [val => (val || '').length > 0 || 'This field is required'],
           email: (value) => {
@@ -280,9 +273,10 @@
         provinces: ['Saskatchewan', 'Alberta', 'British Coloumbia', 'Ontario', 'Quebec', 'Nova Scotia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador'],
         shootTypes: ['Graduation', 'Fashion', 'Family', 'Personal', 'Boudoir'],
         contacts: ['Email', 'Phone', 'Instagram', 'Facebook', 'Twitter'],
+        ages: ['18 - 23', '24 - 30', '30 - 40', '40 - 50', '50 - 60', '0ver 60'],
 
         conditions: false,
-        content: `Hello`,
+        content: `THE INFORMATION PROVIDED ABOVE IS TRUE!`,
         snackbar: false,
         terms: false,
         dateMenu: false,
@@ -291,7 +285,7 @@
 
         first: '',
         last: '',
-        age: null,
+        age: '',
         city: '',
         province: '',
         shootType: '',
