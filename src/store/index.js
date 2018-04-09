@@ -7,40 +7,40 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     loadBooking: [
-      {
-        first: 'Ridwan',
-        last: 'Raji',
-        age: 24,
-        city: 'Saskatoon',
-        province: 'Saskatchewan',
-        shootType: 'Fashion',
-        date: null,
-        time: null,
-        email: 'ror716@mail.usask.ca',
-        phone: '306142057',
-        instagram: 'rilly2000',
-        facebook: 'ridwanraji',
-        twitter: 'rilly2000',
-        contact: 'instagram',
-        bio: 'This is just a test info'
-      },
-      {
-        first: 'Segun',
-        last: 'Raji',
-        age: 24,
-        city: 'Saskatoon',
-        province: 'Saskatchewan',
-        shootType: 'Fashion',
-        date: null,
-        time: null,
-        email: 'ror716@mail.usask.ca',
-        phone: '306142057',
-        instagram: 'rilly2000',
-        facebook: 'ridwanraji',
-        twitter: 'rilly2000',
-        contact: 'instagram',
-        bio: 'This is just a test info'
-      }
+      // {
+      //   first: 'Ridwan',
+      //   last: 'Raji',
+      //   age: 24,
+      //   city: 'Saskatoon',
+      //   province: 'Saskatchewan',
+      //   shootType: 'Fashion',
+      //   date: null,
+      //   time: null,
+      //   email: 'ror716@mail.usask.ca',
+      //   phone: '306142057',
+      //   instagram: 'rilly2000',
+      //   facebook: 'ridwanraji',
+      //   twitter: 'rilly2000',
+      //   contact: 'instagram',
+      //   bio: 'This is just a test info'
+      // },
+      // {
+      //   first: 'Segun',
+      //   last: 'Raji',
+      //   age: 24,
+      //   city: 'Saskatoon',
+      //   province: 'Saskatchewan',
+      //   shootType: 'Fashion',
+      //   date: null,
+      //   time: null,
+      //   email: 'ror716@mail.usask.ca',
+      //   phone: '306142057',
+      //   instagram: 'rilly2000',
+      //   facebook: 'ridwanraji',
+      //   twitter: 'rilly2000',
+      //   contact: 'instagram',
+      //   bio: 'This is just a test info'
+      // }
     ],
     loadHomeCarouselData: [
       {title: 'Rilly Visuals', src: 'https://wallpaperbrowse.com/media/images/5ZydGd0.jpg', text: 'Photographer | Videographer | Graphic Designer'},
@@ -48,9 +48,9 @@ export const store = new Vuex.Store({
       {title: 'Rilly Visuals', src: 'https://wallpaperbrowse.com/media/images/wp-image-59632011-random-picture.jpg', text: 'Photographer | Videographer | Graphic Designer'}
     ],
     loadGalleryImages: [
-      {src: '@/assets/Bridge1.png'},
-      {src: '@/assets/KAT.jpg'},
-      {src: '@/assets/KAT1.jpg'},
+      {src: require('@/assets/Bridge1.png')},
+      {src: require('@/assets/KAT.jpg')},
+      {src: require('@/assets/KAT1.jpg')},
       {src: 'https://wallpaperbrowse.com/media/images/5ZydGd0.jpg'}
     ],
     user: null,
@@ -72,11 +72,43 @@ export const store = new Vuex.Store({
     },
     clearError (state, payload) {
       state.error = null
+    },
+    setLoadBookings (state, payload) {
+      state.loadBooking = payload
     }
   },
   actions: {
     loadAllBooking ({commit}) {
       firebase.database().ref('bookings').once('value')
+      .then((data) => {
+        const bookings = []
+        const obj = data.val()
+        for (let key in obj) {
+          bookings.push({
+            first: obj[key].first,
+            last: obj[key].last,
+            age: obj[key].age,
+            city: obj[key].city,
+            province: obj[key].province,
+            shootType: obj[key].shootType,
+            date: obj[key].date,
+            time: obj[key].time,
+            email: obj[key].email,
+            phone: obj[key].phone,
+            instagram: obj[key].instagram,
+            facebook: obj[key].facebook,
+            twitter: obj[key].twitter,
+            contact: obj[key].contact,
+            bio: obj[key].bio
+          })
+        }
+        commit('setLoadBookings', bookings)
+      })
+      .catch(
+        error => {
+          console.log(error)
+        }
+      )
     },
     createBooking ({commit}, payload) {
       const booking = {
@@ -106,12 +138,9 @@ export const store = new Vuex.Store({
       })
     },
     signUserIn ({commit}, payload) {
-      commit('isLoading', true)
-      commit('clearError')
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
       .then(
         user => {
-          commit('isLoading', false)
           const newUser = {
             id: user.uid
           }
@@ -120,8 +149,6 @@ export const store = new Vuex.Store({
       )
       .catch(
         error => {
-          commit('isLoading', false)
-          commit('setError', error)
           console.log(error)
         }
       )
@@ -138,7 +165,7 @@ export const store = new Vuex.Store({
       return state.loadGalleryImages
     },
     user (state) {
-      return state.user
+      return state.user !== null
     }
   }
 })

@@ -34,7 +34,7 @@
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>
-        <router-link to="/" tag="span" style="cursor: pointer">
+        <router-link to="/Home" tag="span" style="cursor: pointer">
           Rilly Visuals
           </router-link>
       </v-toolbar-title>

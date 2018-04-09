@@ -10,8 +10,7 @@
         :src="slide.src"
         :key="i"
         transition = "fade" >
-          <v-jumbotron dark
-          :gradient="gradient">
+          <v-jumbotron>
             <v-container fill-height>
               <v-layout align-center>
                 <v-flex align-center>
@@ -29,9 +28,6 @@
 
 <script>
 export default {
-  data: () => ({
-    gradient: 'to top right, rgba(63,81,181, .7), rgba(25,32,72, .7)'
-  }),
   computed: {
     cards () {
       return this.$store.getters.loadHomeCarouselData

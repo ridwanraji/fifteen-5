@@ -1,20 +1,16 @@
 <template>
-  <v-container>
-    <v-layout row wrap v-for="image in images"
-                :key="image.src" class="mb-2" >
-      <v-flex xs12 sm6 offset-sm3>
-        <v-card class="info" >
-          <v-container fluid>
-            <v-layout row>
-              <v-flex xs12 sm6 offset-sm3>
+  <v-container fluid fill-height>
+    <v-layout row wrap>
+      <v-flex
+      v-for="image in images"
+      :key="image.src"
+      xs12 sm6 md5 lg3 xl2>
+        <v-card class="my-2 mx-2">
                   <v-card-media
                       class="white--text mb-0"
-                      height="200"
+                      height="400px"
                       :src= "image.src">
                   </v-card-media>
-              </v-flex>
-            </v-layout>
-          </v-container>
         </v-card>
       </v-flex>
     </v-layout>
@@ -25,12 +21,7 @@
 export default {
   computed: {
     images () {
-      return [
-      {src: '@/assets/Bridge1.png'},
-      {src: '@/assets/KAT.jpg'},
-      {src: '@/assets/KAT1.jpg'},
-      {src: 'https://wallpaperbrowse.com/media/images/5ZydGd0.jpg'}
-      ]
+      return this.$store.getters.loadGalleryImages
     }
   }
 }
