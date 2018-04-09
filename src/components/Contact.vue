@@ -35,22 +35,28 @@
                   </v-list-tile>
                   <v-list-tile>
                     <v-list-tile-action>
-                      <v-icon class="blue--text text--lighten-2">fas fa-twitter</v-icon>
+                      <v-icon class="blue--text text--lighten-2">fab fa-twitter</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
-                      <v-list-tile-title>@rillyvisuals</v-list-tile-title>
+                      <v-list-tile-title >@rillyvisuals</v-list-tile-title>
                     </v-list-tile-content>
+                    <v-btn clear href="https://www.twitter.com/rillyvisuals"> FOLLOW US
+                      </v-btn>
                   </v-list-tile>
                   <v-list-tile>
                     <v-list-tile-action>
-                      <v-icon class="blue--text text--lighten-2">fas fa-instagram</v-icon>
+                      <v-icon class="blue--text text--lighten-2">fab fa-instagram</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
                       <v-list-tile-title>@rillyvisuals</v-list-tile-title>
                     </v-list-tile-content>
+                    <v-btn clear href="https://www.instagram.com/rillyvisuals"> FOLLOW US
+                      </v-btn>
                   </v-list-tile>
                 </v-list>
               </v-card>
             </v-layout>
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+
   </v-container>
 </template>
